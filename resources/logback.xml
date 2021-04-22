@@ -1,0 +1,43 @@
+<configuration>
+    <timestamp key="logDate" datePattern="dd-MM-yy"/>
+
+    <!--FILE APPRENDER (CONFIGURED) -->
+    <appender name="LogbackFranLunav1"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- FILE NAME .LOG -->
+        <file>C://dev//logs//elb1fjlpFranLuna-${logDate}.log</file>
+
+        <!--POLICY (CONFIGURED) -->
+        <rollingPolicy
+            class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>C://Dev//logs//elb1fjlpFranLuna-${logDate}.%i.zip
+            </fileNamePattern>
+        <!--FILE AMMOUNT (CONFIGURED) -->
+            <minIndex>1</minIndex>
+            <maxIndex>3</maxIndex>
+        </rollingPolicy>
+
+        <!--TRIGGERING POLICY (CONFIGURED) -->
+        <triggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>50KB</maxFileSize>
+        </triggeringPolicy>
+
+
+        <!--PRINT FILE INFO (CONFIGURED) -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [%method] - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="Consola" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [%method] - %msg%n</pattern>
+    </encoder>
+    </appender>
+    <!--ROOT DE LOOGER-->
+    <root level="debug">
+        <appender-ref ref="LogbackFranLunav1" />
+        <appender-ref ref= "Consola"/>
+    </root>
+</configuration>
